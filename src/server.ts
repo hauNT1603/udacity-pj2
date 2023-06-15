@@ -1,6 +1,7 @@
 // import express from 'express';
 const express =require('express') ;
 import bodyParser from 'body-parser';
+import { Router,Request,Response } from 'express';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
 (async () => {
@@ -32,9 +33,9 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   //! END @TODO1
   
-  app.get( "/filteredimage", async ( req :any, res :any) => {
+  app.get( "/filteredimage", async ( req :Request, res :Response) => {
 
-    let image_url=req.query.image_url.toString();
+    const image_url=req.query.image_url.toString();
     if(!image_url){
       res.status(400).send("image_url is retuired");
     }
@@ -48,7 +49,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   // Root Endpoint
   // Displays a simple message to the user
-  app.get( "/", async ( req :any, res:any  ) => {
+  app.get( "/", async ( req :Request, res:Response  ) => {
     res.send("try GET /filteredimage?image_url={{}}")
   } );
   
